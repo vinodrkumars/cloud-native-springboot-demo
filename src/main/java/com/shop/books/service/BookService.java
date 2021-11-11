@@ -1,8 +1,11 @@
 package com.shop.books.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.stereotype.Service;
 
 import com.shop.books.service.domain.Book;
@@ -18,9 +21,16 @@ import springfox.documentation.annotations.Cacheable;
 public class BookService {
 
 	private final BookRepository bookRepository;
-	
+
+	@HystrixCommand(fallbackMethod = "defaultBookList")
 	public Iterable<Book> viewBookList(){
 		return bookRepository.findAll();
+	}
+
+	private Iterable<Book> defaultBookList(){
+		List<Book> list = new ArrayList();
+		list.add(new Book("Camel in Action", "Java", "Manning","ManningCo", "123234", 10.00));
+		return list;
 	}
 
 	//@Cacheable(value="bookCache", key="isbn")

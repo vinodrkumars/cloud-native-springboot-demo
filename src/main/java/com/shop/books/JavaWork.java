@@ -1,11 +1,14 @@
 package com.shop.books;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class JavaWork {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+
+        Set set = new HashSet();
+        Map map = new HashMap();
         int N = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
     //    scanner.nextDo

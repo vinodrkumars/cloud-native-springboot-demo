@@ -43,11 +43,13 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter /*implemen
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
 		configuration.setAllowedMethods(Arrays.asList("GET","POST"));
+		configuration.setAllowedHeaders(Arrays.asList("*"));
+		//configuration.setAllowedHeaders(Arrays.asList("Custom-Header"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-
+	/*
 	@Bean
 	@Override
 	public UserDetailsService userDetailsService() {
@@ -56,4 +58,6 @@ public class ApplicationSecurity extends WebSecurityConfigurerAdapter /*implemen
 
 		return new InMemoryUserDetailsManager(user);
 	}
+
+	 */
 }

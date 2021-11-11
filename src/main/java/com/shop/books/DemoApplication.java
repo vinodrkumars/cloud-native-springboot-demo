@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import com.shop.books.service.config.PolarProperties;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.function.RouterFunction;
 import org.springframework.web.servlet.function.ServerResponse;
@@ -14,8 +15,12 @@ import static org.springframework.web.servlet.function.RequestPredicates.GET;
 import static org.springframework.web.servlet.function.ServerResponse.ok;
 import static org.springframework.web.servlet.function.RouterFunctions.route;
 
+
 @SpringBootApplication
 @EnableConfigurationProperties(PolarProperties.class)
+@EnableCircuitBreaker //The @EnableCircuitBreaker annotation will scan the classpath for
+// any compatible Circuit Breaker implementation.
+//To use Hystrix explicitly, we have to annotate this class with @EnableHystrix:
 public class DemoApplication {
 	
 	private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
