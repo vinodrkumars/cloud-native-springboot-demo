@@ -1,10 +1,14 @@
 package com.shop.books.service.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.shop.books.service.persistence.PersistableEntity;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,14 +18,34 @@ import lombok.*;
 //@Getter @Setter
 public class Book extends PersistableEntity {
 
+	@Id
+	@GeneratedValue
+	private long id;
+
 	private String title;
 	private String genre;
-	private String author;
+	//@ManyToOne(cascade = {CascadeType.ALL})
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.EAGER)
+	//@JoinColumn(name="author_id")
+	private Author author;
 	private String publisher;
 	@NotBlank(message = "The book ISBN must be defined.")
 	private String isbn;
 	private Double price;
-	
+	/*
+	@OneToMany(mappedBy = "isbn")
+	private List<Author> author = new ArrayList<>();
+*/
+	public Book(String title, String genre, String publisher, String isbn, double price) {
+		super();
+		this.title = title;
+		this.genre = genre;
+		this.publisher = publisher;
+		this.isbn = isbn;
+		this.price = price;
+	}
+
 	/*
 	public Book() {
 		super();

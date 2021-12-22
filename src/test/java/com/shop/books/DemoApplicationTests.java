@@ -3,7 +3,8 @@ package com.shop.books;
 import static com.jayway.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
+//import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -19,10 +20,11 @@ import org.apache.http.client.CredentialsProvider;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.junit.Before;
+import org.aspectj.lang.annotation.Before;
+//import org.junit.Before;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+//import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -36,11 +38,11 @@ import com.jayway.restassured.RestAssured;
 //@WebAppConfiguration
 @SpringBootTest(webEnvironment=WebEnvironment.DEFINED_PORT)
 class DemoApplicationTests {
-	/*
+
 	
 	int port = 8080 ;
 	
-	@Before
+	@Before("")
 	public void setUp() throws Exception {
 		RestAssured.port = port;
 	}
@@ -83,7 +85,7 @@ class DemoApplicationTests {
 		int statusCode = apacheResponse.getStatusLine()
 		  .getStatusCode();
 		 
-		assertThat(statusCode, equalTo(HttpStatus.SC_OK));
+		Assertions.assertEquals(statusCode, equalTo(HttpStatus.SC_OK));
 		
 		//Assertions.assertTrue(output.equals("Hello World"));
 		//Assert.assertEquals(" Test Failure", response.body(), "Hello World");
@@ -123,5 +125,5 @@ class DemoApplicationTests {
 	        Assertions.assertFalse("Hello World!".equals(str));
 	    }
 
-*/
+
 }
